@@ -1,6 +1,6 @@
-namespace HelloApi.Models
+namespace HelloApi.Models.DTOs
 {
-    public class Person
+    public class PersonReadDto
     {
         public int Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
@@ -8,6 +8,5 @@ namespace HelloApi.Models
         public string Email { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        public List<Order> Orders { get; set; } = [];
     }
 }
