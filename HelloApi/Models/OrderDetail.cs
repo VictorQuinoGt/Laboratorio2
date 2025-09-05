@@ -4,7 +4,7 @@ namespace HelloApi.Models
     public class OrderDetail
     {
         public int Id { get; set; }
-        public required int OrderId { get; set; }
+        public int OrderId { get; set; }
         public Order Order { get; set; }
         public required int ItemId { get; set; }
         public Item Item { get; set; }

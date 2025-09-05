@@ -27,7 +27,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             e.Property(x => x.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
         });
 
-         /* // ---- Person
+         // ---- Person
         modelBuilder.Entity<Person>(e =>
         {
             e.ToTable("Persons");
@@ -41,7 +41,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
              .WithOne(o => o.Person)
              .HasForeignKey(o => o.PersonId)
              .OnDelete(DeleteBehavior.Restrict);
-        }); */
+        }); 
 
         // ---- Item
         modelBuilder.Entity<Item>(e =>

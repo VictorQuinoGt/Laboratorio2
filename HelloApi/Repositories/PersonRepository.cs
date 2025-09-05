@@ -48,9 +48,9 @@ namespace HelloApi.Repositories
 
         public async Task<bool> DeletePersonAsync(int id)
         {
-            var entity = await _context.Messages.FindAsync(id);
+            var entity = await _context.Persons.FindAsync(id);
             if (entity == null) return false;
-            _context.Messages.Remove(entity);
+            _context.Persons.Remove(entity);
             await _context.SaveChangesAsync();
             return true;
         }

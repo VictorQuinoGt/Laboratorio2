@@ -63,7 +63,7 @@ public class OrderService(AppDbContext db) : IOrderService
 
             order.OrderDetails.Add(new OrderDetail
             {
-                OrderId = order.Id,
+                Order = order,
                 ItemId = item.Id,
                 Quantity = l.Quantity,
                 Price = price,
