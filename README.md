@@ -93,7 +93,7 @@ npm install
 **Opción A — URL directa**
 ```ts
 // src/app/app.config.ts
-{ provide: API_BASE, useValue: 'http://localhost:5131' } // o https://localhost:7131
+{ provide: API_BASE, useValue: 'http://localhost:5131' } 
 ```
 ```bash
 npx ng serve -o
@@ -124,7 +124,7 @@ Ejecutar:
 npm start
 ```
 
-3) **Tema Angular Material** (`src/styles.css`) — deja un solo import
+3) **Tema Angular Material** (`src/styles.css`) 
 ```css
 /* Claro */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
@@ -195,11 +195,3 @@ npm run build
 3. Crear **Cliente** e **Items**.
 4. Realizar orden en `/orders/create` y confirmar respuesta.
 
----
-
-## 🧰 Troubleshooting
-- **Pantalla en blanco + NG0908:** falta Zone.js (ver polyfills).
-- **ERR_CONNECTION_REFUSED:** backend apagado o `API_BASE`/proxy mal configurado.
-- **CORS:** usar proxy en dev o habilitar CORS en backend.
-- **Deprecation `browserTarget`:** usar `buildTarget` en `angular.json`.
-- **Tema Material no aplica:** revisa el `@import` en `styles.css` y evita duplicados.
