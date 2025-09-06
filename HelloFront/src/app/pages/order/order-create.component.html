@@ -1,0 +1,57 @@
+<mat-card>
+  <h2>Realizar Orden</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field appearance="fill" style="width: 320px;">
+      <mat-label>Persona</mat-label>
+      <mat-select formControlName="personId" required>
+        <mat-option [value]="null">-- Seleccione --</mat-option>
+        <mat-option *ngFor="let p of persons()" [value]="p.id">
+          {{p.firstName}} {{p.lastName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div style="margin-top:16px">
+      <div *ngFor="let group of lines.controls; let i = index" [formGroup]="group" class="line-row">
+        <mat-form-field appearance="fill" style="width: 320px;">
+          <mat-label>Item</mat-label>
+          <mat-select formControlName="itemId" required>
+            <mat-option [value]="null">-- Seleccione --</mat-option>
+            <mat-option *ngFor="let it of items()" [value]="it.id">
+              {{it.name}} ({{it.price | number:'1.2-2'}})
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 120px; margin-left: 12px;">
+          <mat-label>Cantidad</mat-label>
+          <input matInput type="number" min="1" formControlName="quantity">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 160px; margin-left: 12px;">
+          <mat-label>Precio (opcional)</mat-label>
+          <input matInput type="number" step="0.01" formControlName="price" placeholder="Usa el precio del item">
+        </mat-form-field>
+
+        <div style="width: 140px; margin: 30px 12px 0;">
+          <strong>Total:</strong> {{ lineTotal(i) | number:'1.2-2' }}
+        </div>
+
+        <button mat-icon-button color="warn" (click)="removeLine(i)" style="margin-top: 20px;">
+          <span class="material-icons">close</span>
+        </button>
+      </div>
+
+      <button mat-stroked-button color="primary" type="button" (click)="addLine()">
+        <span class="material-icons">add</span> Agregar línea
+      </button>
+    </div>
+
+    <h3 style="text-align:right;margin-top:16px">Total: {{ grandTotal() | number:'1.2-2' }}</h3>
+
+    <div style="text-align:right;margin-top:12px">
+      <button mat-raised-button color="primary" type="submit">Guardar Orden</button>
+    </div>
+  </form>
+</mat-card>

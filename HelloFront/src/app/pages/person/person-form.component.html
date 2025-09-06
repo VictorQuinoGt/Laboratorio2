@@ -1,0 +1,27 @@
+<mat-card>
+  <h2>{{ id() ? 'Editar Cliente' : 'Nuevo Cliente' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <mat-form-field appearance="fill" style="width: 320px;">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="firstName" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 320px; margin-left: 12px;">
+      <mat-label>Apellido</mat-label>
+      <input matInput formControlName="lastName" required>
+    </mat-form-field>
+
+    <div></div>
+
+    <mat-form-field appearance="fill" style="width: 400px;">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" required type="email">
+    </mat-form-field>
+
+    <div style="margin-top: 12px">
+      <button mat-raised-button color="primary" type="submit">Guardar</button>
+      <a mat-stroked-button color="basic" [routerLink]="['/persons']" style="margin-left: 8px">Cancelar</a>
+    </div>
+  </form>
+</mat-card>
