@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: LoginComponent },
   { path: 'persons', loadComponent: () => import('./pages/person/person-list.component').then(m => m.PersonListComponent) },
   { path: 'persons/new', loadComponent: () => import('./pages/person/person-form.component').then(m => m.PersonFormComponent) },
   { path: 'persons/:id', loadComponent: () => import('./pages/person/person-form.component').then(m => m.PersonFormComponent) },
@@ -12,5 +12,6 @@ export const routes: Routes = [
   { path: 'orders/create', loadComponent: () => import('./pages/order/order-create.component').then(m => m.OrderCreateComponent) },
   { path: 'orders', loadComponent: () => import('./pages/order/order-list.component').then(m => m.OrderListComponent) },
   { path: 'orders/:id', loadComponent: () => import('./pages/order/order-detail.component').then(m => m.OrderDetailComponent) },
+  {path: 'login', loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent) },
 
 ];

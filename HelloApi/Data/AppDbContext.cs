@@ -2,17 +2,19 @@ using Microsoft.EntityFrameworkCore;
 using HelloApi.Models;    // Message
     // Person, Client, Product, Invoice, Detail, Item, Order, OrderDetail
 
-namespace HelloApi.Data;   // Opcional: cámbialo a HelloApi.Data si prefieres
+namespace HelloApi.Data;   
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
     public DbSet<Message> Messages => Set<Message>();
     public DbSet<Person> Persons => Set<Person>();
-    public DbSet<Item> Items => Set<Item>(); 
+    public DbSet<Item> Items => Set<Item>();
     //public DbSet<Product> Products => Set<Product>();
     //public DbSet<Client> Clients => Set<Client>();
     //public DbSet<Invoice> Invoices => Set<Invoice>();
     //public DbSet<Detail> Details => Set<Detail>();
+    public DbSet<User> Users { get; set; }
+    public DbSet<Role> Roles { get; set; }
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<OrderDetail> OrderDetails => Set<OrderDetail>();
 
@@ -27,21 +29,11 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             e.Property(x => x.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
         });
 
-         // ---- Person
-        modelBuilder.Entity<Person>(e =>
-        {
-            e.ToTable("Persons");
-            e.HasKey(x => x.Id);
-            e.Property(x => x.FirstName).IsRequired().HasMaxLength(100);
-            e.Property(x => x.LastName).IsRequired().HasMaxLength(100);
-            e.Property(x => x.Email).HasMaxLength(200);
-            e.Property(x => x.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
-            // e.HasIndex(x => x.Email).IsUnique(); // opcional
-            e.HasMany(x => x.Orders)
-             .WithOne(o => o.Person)
-             .HasForeignKey(o => o.PersonId)
-             .OnDelete(DeleteBehavior.Restrict);
-        }); 
+        // ---- Person
+         modelBuilder.Entity<Person>()
+        .HasMany(t => t.Orders)
+        .WithOne(t => t.Person)
+        .HasForeignKey(t => t.PersonId);
 
         // ---- Item
         modelBuilder.Entity<Item>(e =>
@@ -63,9 +55,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         {
             e.ToTable("Orders");
             e.HasKey(x => x.Id);
-            e.Property(x => x.Number).IsRequired(); // si usas correlativo
+            e.Property(x => x.Number).IsRequired(); 
             e.Property(x => x.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
-            e.HasIndex(x => x.Number); // e.HasIndex(x => x.Number).IsUnique(); // si lo quieres único
+            e.HasIndex(x => x.Number); 
             e.HasOne(x => x.Person)
              .WithMany(p => p.Orders)
              .HasForeignKey(x => x.PersonId)
@@ -148,5 +140,23 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             e.Property(x => x.Total).HasColumnType("decimal(18,2)").IsRequired();
             e.Property(x => x.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
         }); */
+        
+
+        modelBuilder.Entity<Role>()
+        .HasMany(t => t.Users)
+        .WithOne(t => t.Role)
+        .HasForeignKey(t => t.RoleId);
+
+        //seed tables to login        
+        /*modelBuilder.Entity<Role>().HasData(
+            new Role { Id = 1, Name = "Admin" },
+            new Role { Id = 2, Name = "User" }
+        );
+
+        modelBuilder.Entity<User>().HasData(
+            new User { Id = 1, Username = "admin@miumg.edu.gt", Password = "Admin123$#2025", RoleId = 1 },
+            new User { Id = 2, Username = "user@miumg.edu.gt", Password = "User123$#2025", RoleId = 2 }
+        );*/
+
     }
 }

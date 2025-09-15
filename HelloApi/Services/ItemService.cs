@@ -1,7 +1,7 @@
 using HelloApi.Models;
 using HelloApi.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
-using HelloApi.Data; // Ajusta si tu DbContext está en HelloApi.Data
+using HelloApi.Data; 
 
 namespace HelloApi.Services;
 

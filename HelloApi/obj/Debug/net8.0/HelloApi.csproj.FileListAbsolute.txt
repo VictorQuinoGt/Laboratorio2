@@ -167,3 +167,6 @@ C:\Users\vikto\Downloads\WebApi\HelloApi\obj\Debug\net8.0\refint\HelloApi.dll
 C:\Users\vikto\Downloads\WebApi\HelloApi\obj\Debug\net8.0\HelloApi.pdb
 C:\Users\vikto\Downloads\WebApi\HelloApi\obj\Debug\net8.0\HelloApi.genruntimeconfig.cache
 C:\Users\vikto\Downloads\WebApi\HelloApi\obj\Debug\net8.0\ref\HelloApi.dll
+C:\Users\vikto\Downloads\WebApi\HelloApi\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\vikto\Downloads\WebApi\HelloApi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\vikto\Downloads\WebApi\HelloApi\bin\Debug\net8.0\package-lock.json
